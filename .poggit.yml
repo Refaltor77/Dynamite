@@ -1,0 +1,9 @@
+--- # Poggit-CI Manifest. Open the CI at https://poggit.pmmp.io/ci/Refaltor77/Dynamite
+build-by-default: true
+branches:
+- main
+projects:
+  Dynamite:
+    path: ""
+    icon: dynamite.png
+...
