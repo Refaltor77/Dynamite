@@ -7,8 +7,8 @@ use pocketmine\event\entity\EntityExplodeEvent;
 use pocketmine\event\entity\ProjectileHitEntityEvent;
 use pocketmine\event\entity\ProjectileHitEvent;
 use pocketmine\event\Listener;
-use pocketmine\level\Explosion;
-use pocketmine\level\Position;
+use pocketmine\world\Explosion;
+use pocketmine\world\Position;
 
 class EventListener implements Listener
 {
@@ -16,7 +16,7 @@ class EventListener implements Listener
     {
        $entity = $event->getEntity();
        if ($entity instanceof Egg) {
-       	$explosion = new Explosion(new Position($entity->getX(), $entity->getY(), $entity->getZ(), $entity->getLevel()), 3.4, $entity);
+       	$explosion = new Explosion(new Position($entity->getPosition()->getX(), $entity->getPosition()->getY(), $entity->getPosition()->getZ(), $entity->getWorld()), 3.4, $entity);
        	$explosion->explodeA();
        	$explosion->explodeB();
        	$entity->flagForDespawn();
@@ -27,7 +27,7 @@ class EventListener implements Listener
     {
         $entity = $event->getEntity();
         if ($entity instanceof Egg) {
-        	$explosion = new Explosion(new Position($entity->getX(), $entity->getY(), $entity->getZ(), $entity->getLevel()), 3.4, $entity);
+        	$explosion = new Explosion(new Position($entity->getPosition()->getX(), $entity->getPosition()->getY(), $entity->getPosition()->getZ(), $entity->getWorld()), 3.4, $entity);
         	$explosion->explodeA();
         	$explosion->explodeB();
         	$entity->flagForDespawn();
@@ -37,7 +37,7 @@ class EventListener implements Listener
 
     public function onExplodeEntity(EntityExplodeEvent $event){
          $entity = $event->getEntity();
-         $block = $entity->getLevel()->getBlock($entity);
+         $block = $entity->getWorld()->getBlock($entity->getPosition());
          $list = [];
          if ($entity instanceof Egg){
              if (!$event->isCancelled()){

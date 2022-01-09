@@ -6,7 +6,7 @@ use pocketmine\plugin\PluginBase;
 
 class Dynamite extends PluginBase
 {
-    public function onEnable()
+    protected function onEnable(): void
     {
         $this->getServer()->getPluginManager()->registerEvents(new EventListener(), $this);
     }
